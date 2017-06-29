@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load path_helper %}
+{% load mathfilters %}
+{% load humanize %}
+{% block title %}
+   <title>AirJets - заказ самолета на лучших условиях. | О компании</title>
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="">
+{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{% block content %}
+   {% for plane in planes reversed %}
+       {% if plane.visible == 1 %}
+        <section id="section-{{ forloop.counter }}" class="clearfix">
+{#            <hr class="color-line">#}
+{#            <?php#}
+{#            $images = [];#}
+{#            $images[] = $plane->image_plan;#}
+{#            $images[] = $plane->image_exterior;#}
+{#            $images[] = $plane->image_interior;#}
+{#            $images = array_values(array_filter($images, 'strlen'));#}
+{#            $images_count = count($images);#}
+{#            ?>#}
+{#            <?php if ($images_count >= 1): ?>#}
+            {% if plane.images_arr|length >= 1 %}
+                <div class="image">
+{#                    <?php if ($images_count > 1): ?>#}
+                    {% if plane.images_arr|length > 1 %}
+
+                        <div id="section-{{ forloop.counter }}-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner" role="listbox">
+{#                                <?php foreach ($images as $index => $image): ?>#}
+                                {% for image in plane.images_arr %}
+                                    {% if forloop.counter0 == 0 %}
+                                        <div class="item active">
+                                    {% else %}
+                                        <div class="item">
+                                    {% endif %}
+{#                                        <img src="<?= PathHelper::geResizedImagePath($image, '1280') ?>"#}
+{#                                            srcset="<?= PathHelper::geResizedImagePath($image, '1280') ?> 1x, <?= PathHelper::geResizedImagePath($image, '2560') ?> 2x"#}
+{#                                            alt="">                                #}
+{#                                        <img src="{% static image|path_helper:'1280' %}" srcset="{% static image|path_helper:'1280' %} 1x, {% static image|path_helper:'2560' %} 2x"#}
+{#                                            alt="">#}
+                                        <img src="{{image|safe}}" srcset="{{ image|safe }} 1x, {{ image|safe }} 2x"  alt="">
+{#                                        <img src="/static{{ image }}" alt="">#}
+                                    </div>
+                                {% endfor %}
+                            </div>
+{#                            <?php#}
+{#                            $carousel_indicators_width = $images_count * 16 + 16;#}
+{#                            $carousel_controls_and_indicators_width = $carousel_indicators_width + 20;#}
+{#                            ?>#}
+                            <div class="carousel-controls-and-indicators clearfix" style="width:{{ plane.images_arr|length|mul:16|add:36 }}>px; left: -{{ carousel_section_content.section_3|length|mul:16|add:36|div:2|floatformat:'0' }}px">
+                                <a class="carousel-control carousel-control-left" href="#section-{{forloop.counter}}-carousel" role="button" data-slide="prev"></a>
+                                <ol class="carousel-indicators clearfix" style="width: {{ plane.images_arr|length|mul:16|add:16 }}px">
+{#                                    <?php for ($i = 0; $i < $images_count; $i++): ?>#}
+{#                                        <li data-target="#<?= $carousel_id ?>" data-slide-to="<?= $i ?>"<?= ($i === 0 ? ' class="active"' : '') ?>>#}
+{#                                            <?php if ($i < ($images_count - 1)): ?>#}
+{#                                                <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>#}
+{#                                            <?php else: ?>#}
+{#                                                <span class="carousel-indicator-dash"></span><span class="carousel-indicator"></span>#}
+{#                                            <?php endif; ?>#}
+{#                                        </li>#}
+{#                                    <?php endfor; ?>#}
+                                    {% for image in plane.images_arr %}
+                                        {% if forloop.counter0 == 0 %}
+                                            <li data-target="#section-{{forloop.parentloop.counter}}-carousel" data-slide-to="{{ forloop.counter0 }}" class="active">
+                                                <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                            </li>
+                                        {% else %}
+                                            {% if forloop.counter <  plane.images_arr|length %}
+                                                <li data-target="#section-{{forloop.parentloop.counter}}-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                                    <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                                </li>
+                                            {% else %}
+                                                 <li data-target="#section-{{forloop.parentloop.counter}}-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                                    <span class="carousel-indicator-dash"></span><span class="carousel-indicator"></span>
+                                                </li>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+
+
+                                </ol>
+                                <a class="carousel-control carousel-control-right" href="#section-{{ forloop.counter }}-carousel" role="button" data-slide="next"></a>
+                            </div>
+                        </div>
+{#                    <?php endif; ?>#}
+                        {% endif %}
+                        {% if plane.images_arr|length == 1 %}
+                            <img src="/static{{  plane.images_arr.0 }}" alt="">
+
+{#                            <?php if ($images_count === 1): ?>#}
+{#                                <img src="<?= PathHelper::geResizedImagePath($images[0], '1280') ?>"#}
+{#                                    srcset="<?= PathHelper::geResizedImagePath($images[0], '1280') ?> 1x, <?= PathHelper::geResizedImagePath($images[0], '2560') ?> 2x"#}
+{#                                    alt="">#}
+{#                            <?php endif; ?>#}
+                        {% endif %}
+{#                    <hr class="color-line">#}
+                </div>
+{#            <?php endif; ?>#}
+                {% endif %}
+            <div class="text-block text-block-white col-md-10 col-md-offset-1 clearfix">
+                <div class="col-md-6">
+                    <h2>{{plane.title|safe}}</h2>
+                    <p class="plane-info-subtitle">
+                        Категория:
+                        {% if plane.category__description %}
+                            {{ plane.category__description }}<br>
+                        {% endif %}
+                        Пассажиров:
+                        {% if plane.passengers %}
+                            {{ plane.passengers }}<br>
+                        {% endif %}
+                        Дальность:
+                        {% if plane.range %}
+                            {{ plane.range|number_format }} км<br>
+                        {% endif %}
+{#                        <?php#}
+{#                        /**#}
+{#                         * @var $category Category#}
+{#                         */#}
+{#                        $category = $plane->getCategory()->one() ?>#}
+{#                        <?= $category ?#}
+{#                            ' . $category->description . '' : '' ?>#}
+{#                        <?= $plane->passengers ?#}
+{#                            'Пассажиров: ' . strip_tags($plane->passengers) . '<br>' : '' ?>#}
+{#                        <?= $plane->range ?#}
+{#                            'Дальность: ' . number_format($plane->range, 0, '.', ' ') . ' км<br>' : '' ?>#}
+                    </p>
+                    <hr class="color-line">
+                    <span class="flights-title">Недавние рейсы</span>
+                    {{ plane.flights|safe }}
+                </div>
+                <div class="col-md-6">
+                    {{ plane.description|safe }}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+    {% endfor %}
+    <hr class="color-line">
+{% endblock %}

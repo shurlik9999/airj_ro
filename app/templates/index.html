@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load mathfilters %}
+{% block title %}
+   <title>AirJets - заказ самолета на лучших условиях.{{ title }}</title>
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+{% endblock %}
+
+{% block scripts %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.css' %}"/>
+
+    <script src="{% static 'js/scrollTeaser.js' %}"></script>
+    <script src="{% static 'vendor/slick/slick.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="hidden-xs">
+        <div id="scrollTeaser" style="display: none;" >
+            <div id="scrollTeaser-down1"></div>
+            <div id="scrollTeaser-down2"></div>
+            <div id="scrollTeaser-down3"></div>
+            <div id="scrollTeaser-down4">Вниз</div>
+        </div>
+    </div>
+    <section id="section-1" class="bg-home-section-1 clearfix">
+        <div class="text-block text-block-black col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            {% for content in content_blocks %}
+                {% if content.code == 'home-section-1-text-block-1'%}
+                    {{ content.content|safe }}
+                    <div class="hidden-xs">
+                        <a href="#form_section" class="scrollto">
+                            <button type="button" class="btn" name="more-button">Заказать расчет рейса</button>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            <hr class="color-line">
+        </div>
+    </section>
+    <hr class="color-line">
+    <section id="section-2" class="clearfix">
+
+    {% if slick_images.slider_2_line_left %}
+            <div class="hidden-xs hidden-sm col-md-4 slick-slider">
+            {% for image in slick_images.slider_2_line_left %}
+                {% if image.path %}
+                    <div class="slick-element" style="background-image: url('{{ image.path.url }}');"></div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+             <div class="image-block-l hidden-xs hidden-sm col-md-4"></div>
+        {% endif %}
+
+        <div class="text-block text-block-white col-md-4 clearfix">
+            {% for content in content_blocks %}
+                {% if content.code  == 'home-section-2-text-block-1-title'%}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+            <hr class="color-line">
+
+            <div id="section-2-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+    {#        carousel#}
+                <div class="carousel-inner" role="listbox">
+                    {% for content in carousel_section_content.section_2 %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="item active">
+                                {{ content.content|safe }}
+                            </div>
+                        {% else %}
+                            <div class="item">
+                                {{ content.content|safe  }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls-and-indicators clearfix" style="width:{{ carousel_section_content.section_2|length|mul:16|add:36 }}px; left: -{{ carousel_section_content.section_2|length|mul:16|add:36|div:2|floatformat:'0' }}px">
+                    <a class="carousel-control carousel-control-left" href="#section-2-carousel" role="button" data-slide="prev"></a>
+                    <ol class="carousel-indicators clearfix" style="width: {{ carousel_section_content.section_2|length|mul:16|add:16 }}px;">
+                        {% for content in carousel_section_content.section_2 %}
+                            {% if forloop.counter0 == 0 %}
+                                <li data-target="#section-2-carousel" data-slide-to="{{ forloop.counter0 }}" class="active">
+                                    <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                </li>
+                            {% else %}
+                                {% if forloop.counter < carousel_section_content.section_2|length %}
+                                    <li data-target="#section-2-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                    </li>
+                                {% else %}
+                                     <li data-target="#section-2-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator-dash"></span><span class="carousel-indicator"></span>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <a class="carousel-control carousel-control-right" href="#section-2-carousel" role="button" data-slide="next"></a>
+                </div>
+    {#        Carousel#}
+            </div>
+        </div>
+        <a class="left carousel-control" href="#section-2-carousel" role="button" data-slide="prev">
+           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="right carousel-control" href="#section-2-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        {% if slick_images.slider_2_line_right %}
+            <div class="hidden-xs hidden-sm col-md-4 slick-slider">
+            {% for image in slick_images.slider_2_line_right %}
+                {% if image.path %}
+                    <div class="slick-element" style="background-image: url('{{ image.path.url }}');"></div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="image-block-r hidden-xs hidden-sm col-md-4"></div>
+        {% endif %}
+
+    </section>
+    <hr class="color-line">
+
+    {% if slick_images.slider_3_line %}
+        <section id="section-3" class="">
+            <div class="slick-slider" >
+            {% for image in slick_images.slider_3_line %}
+                {% if image.path %}
+                    <div class="slick-element" style="background-image: url('{{ image.path.url }}');"></div>
+                {% endif %}
+            {% endfor %}
+            </div>
+    {% else %}
+         <section id="section-3" class="bg-home-section-3">
+    {% endif %}
+
+{#    <section id="section-3" class="bg-home-section-3">#}
+{#        <section id="section-3" class="">#}
+{#        <div class="slick-slider" >#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/11.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/12.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/13.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/14.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/15.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/3-line/16.jpg' %});"></div>#}
+{#        </div>#}
+
+       <div class="text-block text-block-black col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+            <div id="section-3-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner" role="listbox">
+                    {% for content in carousel_section_content.section_3 %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="item active">
+                                {{ content.content|safe }}
+                            </div>
+                        {% else %}
+                            <div class="item">
+                                {{ content.content|safe  }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls-and-indicators clearfix" style="width:{{ carousel_section_content.section_3|length|mul:16|add:36 }}px; left: -{{ carousel_section_content.section_3|length|mul:16|add:36|div:2|floatformat:'0' }}px">
+                    <a class="carousel-control carousel-control-left" href="#section-3-carousel" role="button" data-slide="prev"></a>
+                    <ol class="carousel-indicators clearfix" style="width: {{ carousel_section_content.section_3|length|mul:16|add:16 }}px;">
+                        {% for content in carousel_section_content.section_3 %}
+                            {% if forloop.counter0 == 0 %}
+                                <li data-target="#section-3-carousel" data-slide-to="{{ forloop.counter0 }}" class="active">
+                                    <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                </li>
+                            {% else %}
+                                {% if forloop.counter < carousel_section_content.section_3|length %}
+                                    <li data-target="#section-3-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                    </li>
+                                {% else %}
+                                     <li data-target="#section-3-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator-dash"></span><span class="carousel-indicator"></span>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <a class="carousel-control carousel-control-right" href="#section-3-carousel" role="button" data-slide="next"></a>
+                </div>
+
+            </div>
+                <a class="left carousel-control" href="#section-3-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                </a>
+                <a class="right carousel-control" href="#section-3-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                </a>
+            <hr class="color-line">
+        </div>
+    </section>
+    <hr class="color-line">
+    <section id="section-4" class="clearfix">
+        <div class="text-block text-block-white col-md-4 col-md-offset-1 clearfix">
+            {% for content in content_blocks %}
+                {% if content.code  == 'home-section-4-text-block-1-title'%}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+            <hr class="color-line">
+            <div id="section-4-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+               <div class="carousel-inner" role="listbox">
+                    {% for content in carousel_section_content.section_4 %}
+                        {% if forloop.counter0 == 0 %}
+                            <div class="item active">
+                                {{ content.content|safe }}
+                            </div>
+                        {% else %}
+                            <div class="item">
+                                {{ content.content|safe  }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="carousel-controls-and-indicators clearfix" style="width:{{ carousel_section_content.section_4|length|mul:16|add:36 }}px; left: -{{ carousel_section_content.section_4|length|mul:16|add:36|div:2|floatformat:'0' }}px">
+                    <a class="carousel-control carousel-control-left" href="#section-4-carousel" role="button" data-slide="prev"></a>
+                    <ol class="carousel-indicators clearfix" style="width: {{ carousel_section_content.section_4|length|mul:16|add:16 }}px;">
+                        {% for content in carousel_section_content.section_4 %}
+                            {% if forloop.counter0 == 0 %}
+                                <li data-target="#section-4-carousel" data-slide-to="{{ forloop.counter0 }}" class="active">
+                                    <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                </li>
+                            {% else %}
+                                {% if forloop.counter < carousel_section_content.section_4|length %}
+                                    <li data-target="#section-4-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator"></span><span class="carousel-indicator-dash"></span>
+                                    </li>
+                                {% else %}
+                                     <li data-target="#section-4-carousel" data-slide-to="{{ forloop.counter0 }}" >
+                                        <span class="carousel-indicator-dash"></span><span class="carousel-indicator"></span>
+                                    </li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                    <a class="carousel-control carousel-control-right" href="#section-4-carousel" role="button" data-slide="next"></a>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#section-4-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="right carousel-control" href="#section-4-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        {% if slick_images.slider_4_line %}
+            <div class="slick-slider hidden-xs hidden-sm col-md-6 col-md-offset-1">
+                {% for image in slick_images.slider_4_line %}
+                    {% if image.path %}
+                        <div class="slick-element" style="background-image: url('{{ image.path.url }}');"></div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+             <div class="image-block-r hidden-xs hidden-sm col-md-6 col-md-offset-1"></div>
+        {% endif %}
+{#        <div class="image-block-r hidden-xs hidden-sm col-md-6 col-md-offset-1"></div>#}
+{#        <div class="slick-slider hidden-xs hidden-sm col-md-6 col-md-offset-1">#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/4-line/B+W_H.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/4-line/PaymentServices_BW21.jpg' %});"></div>#}
+{#            <div class="slick-element" style="background-image: url({% static 'images/slider/4-line/photo1.jpg' %});"></div>#}
+{#        </div>#}
+    </section>
+    <hr class="color-line">
+    <section id="form_section" class="clearfix">
+        <form>
+             {% csrf_token %}
+            <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+                <div class="left_block col-md-6">
+                    <hr class="color-line">
+                    <input type="text" class="form-control" name="contacts" placeholder="Ваши контакты">
+                    <input type="text" class="form-control" name="route" placeholder="Пункты рейса">
+                    <input type="text" class="form-control" name="route_date" placeholder="Даты полета">
+                </div>
+                <div class="right_block col-md-6 ">
+                    <hr class="color-line hidden-sm hidden-xs">
+                    <input type="text"  class="form-control" name="pax" placeholder="Количество пассажиров">
+                    <input type="text" class="form-control" name="message" placeholder="Примечания">
+                    <div class="submit_container">
+                        <button type="submit" id="send-message-button" class="btn btn-default" name="send-message-button">ЗАКАЗАТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+{% endblock %}

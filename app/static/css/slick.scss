@@ -1,0 +1,25 @@
+.slick-slider{
+  height: 100%;
+  padding: 0;
+  .slick-element{
+    background-size: cover;
+    background-position: center;
+    height:100%;
+  }
+  .slick-list{
+    height: 100%;
+    .slick-track{
+      height: 100%;
+    }
+  }
+}
+#section-3{
+  .slick-slider{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .text-block-black{
+    z-index: 2;
+  }
+}

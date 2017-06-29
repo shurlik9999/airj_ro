@@ -1,0 +1,176 @@
+@import "scrollTeaser";
+
+$menu-button-width: 115px;
+$menu-logo-width: 96px;
+$menu-logo-height: 34px;
+$menu-button-count: 5;
+$menu-width: $menu-button-width * $menu-button-count;
+
+body {
+  > header {
+    .navbar {
+      margin: 0;
+      background-color: rgba(255, 255, 255, 0.7);
+      .navbar-toggle {
+        border-radius: 0;
+      }
+      .navbar-brand {
+        padding-top: 8px;
+        img {
+          width: $menu-logo-width;
+          height: $menu-logo-height;
+        }
+      }
+      .navbar-nav {
+        float: none;
+         @media (min-width: $screen-sm) {
+          width: $menu-width;
+        }
+        > li {
+          @media (min-width: $screen-sm) {
+            width: $menu-button-width;
+            height: $header-height;
+            text-align: center;
+          }
+          > a {
+            display: inline-block;
+            margin: 10px 0 7.5px;
+            @media (min-width: $screen-sm) {
+              margin: 24px 0 0;
+            }
+            padding: 0;
+            font-size: 12px;
+            font-family: GothamProMedium, sans-serif;
+            &,
+            &:focus,
+            &:hover,
+            &:visited {
+              background-color: transparent;
+              color: rgb(0, 0, 0);
+              text-transform: uppercase;
+            }
+            &:hover {
+              border-bottom: 1px solid rgb(0, 0, 0);
+            }
+            &.menu-logo {
+              margin-top: 17px;
+              &:hover {
+                border: none;
+              }
+              img {
+                width: $menu-logo-width;
+                height: $menu-logo-height;
+              }
+            }
+          }
+          &.active {
+            & > a {
+              border-bottom: 1px solid rgb(0, 0, 0);
+              background-color: transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+  //> .container-fluid {
+  //  overflow-x: hidden;
+  //}
+  > footer {
+    > .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      border: none;
+    }
+    //@media (max-width: $screen-sm) {
+    //  bottom: -91px;
+    //}
+    //height: $footer-height;
+    //@media (max-width: $screen-sm) {
+    //  height: 161px;
+    //}
+    text-align: center;
+    hr.color-line {
+      margin: 0;
+    }
+    .footer-links {
+      display: inline-block;
+      padding: 0;
+      list-style: none;
+      text-align: left;
+      > li {
+        display: inline-block;
+        //float: none;
+        //@media (min-width: $screen-sm) {
+        //  float: left;
+        //}
+        margin-top: 20px;
+        height: 30px;
+        color: $default-gray;
+        font-size: 12px;
+        font-family: GothamProMedium, sans-serif;
+        line-height: 30px;
+        &.footer-links-second-phone-item {
+          margin-left: 10px;
+        }
+        @media (max-width: $screen-sm) {
+          &.footer-links-second-phone-item {
+            margin-left: 25px;
+          }
+        }
+        &.footer-links-email-item {
+          margin-left: 20px;
+        }
+        @media (max-width: $screen-sm) {
+          &.footer-links-email-item {
+            margin-left: 10px;
+          }
+        }
+        > img {
+          margin-right: 6px;
+        }
+        > a {
+          &,
+          &:focus,
+          &:hover,
+          &:visited {
+            color: $default-gray;
+          }
+        }
+      }
+    }
+  }
+}
+
+#last-section {
+  height: 240px;
+  background: url("../images/bg-last-section-pattern.png");
+  @include image-2x-repeat("../images/bg-last-section-pattern@2x.png", 9px, 31px);
+  text-align: center;
+  .last-section-up-text,
+  .last-section-copyright {
+    display: block;
+    color: black;
+    font-size: 12px;
+    font-family: Roboto, sans-serif;
+    font-weight: 300;
+  }
+  .last-section-up-link {
+    width: 30px;
+    height: 60px;
+    background: url("../images/up-icon.png") bottom no-repeat;
+  }
+  .last-section-up-text {
+    padding-top: 5px;
+  }
+  .last-section-logo {
+    padding-top: 15px;
+    width: 82px;
+  }
+  .last-section-copyright {
+    padding-top: 10px;
+  }
+}
+
+#mobile-footer-drawer {
+  height: 61px;
+}

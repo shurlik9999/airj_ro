@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+   <title>AirJets - заказ самолета на лучших условиях. | О компании</title>
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="">
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/contacts.js' %}"></script>
+{#    TODO: import settings file and check if is production#}
+    <script src="//maps.googleapis.com/maps/api/js?callback=initMap"></script>
+{#    <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCLkWkihn9r5zaIorkg-1omO3uWLbgv8Ig&amp;callback=initMap"></script>#}
+{% endblock %}
+
+{% block content %}
+    <section id="section-1" class="bg-contacts-section-1">
+        <div class="text-block text-block-transparent col-md-8 col-md-offset-2">
+            {% for content in content_blocks %}
+                {% if content.code == 'contacts-section-1-text-block-1' %}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <hr class="color-line">
+    <section id="section-2">
+        <div class="text-block text-block-white col-md-4 col-md-offset-1 clearfix">
+            {% for content in content_blocks %}
+                {% if content.code == 'contacts-section-2-title' %}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+            <hr class="color-line">
+        {% for content in content_blocks %}
+                {% if content.code == 'contacts-section-2-address' %}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="map-block col-md-6 col-md-offset-1"></div>
+    </section>
+    <hr class="color-line">
+    <section id="section-3" class="bg-contacts-section-3">
+        <div class="text-block text-block-transparent col-md-8 col-md-offset-2">
+            {% for content in content_blocks %}
+                {% if content.code == 'contacts-section-3-text-block-1' %}
+                    {{ content.content|safe }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <hr class="color-line">
+    <section id="form_section" class="clearfix">
+        <form>
+             {% csrf_token %}
+            <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+                <div class="left_block col-md-6">
+                    <hr class="color-line">
+                    <input type="text" class="form-control" name="contacts" placeholder="Ваши контакты">
+                    <input type="text" class="form-control" name="route" placeholder="Пункты рейса">
+                    <input type="text" class="form-control" name="route_date" placeholder="Даты полета">
+                </div>
+                <div class="right_block col-md-6 ">
+                    <hr class="color-line hidden-sm hidden-xs">
+                    <input type="text"  class="form-control" name="pax" placeholder="Количество пассажиров">
+                    <input type="text" class="form-control" name="message" placeholder="Примечания">
+                    <div class="submit_container">
+                        <button type="submit" id="send-message-button" class="btn btn-default" name="send-message-button">ЗАКАЗАТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+{% endblock %}

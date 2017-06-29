@@ -1,0 +1,45 @@
+#scrollTeaser {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  z-index: 100;
+  margin-left: -15px;
+  width: 30px;
+  height: 50px;
+}
+
+#scrollTeaser > div {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#scrollTeaser-down1 {
+  top: 0;
+  background: url("../images/scrollTeaser/down1.png");
+  @include image-2x("../images/scrollTeaser/down1@2x.png", 30px, 30px);
+}
+
+#scrollTeaser-down2 {
+  top: 20px;
+  background: url("../images/scrollTeaser/down2.png");
+  @include image-2x("../images/scrollTeaser/down2@2x.png", 30px, 30px);
+}
+
+#scrollTeaser-down3 {
+  top: 40px;
+  background: url("../images/scrollTeaser/down3.png");
+  @include image-2x("../images/scrollTeaser/down3@2x.png", 30px, 30px);
+}
+
+#scrollTeaser-down4 {
+  top: 87px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}

@@ -1,0 +1,44 @@
+body {
+  &.page-about {
+    > header {
+      .navbar {
+        li.about > a {
+          border-bottom: 1px solid rgb(0, 0, 0);
+        }
+      }
+    }
+  }
+
+  &.page-contacts {
+    > header {
+      .navbar {
+        li.contacts > a {
+          border-bottom: 1px solid rgb(0, 0, 0);
+        }
+      }
+    }
+  }
+
+  &.page-news {
+    > header {
+      .navbar {
+        li.news > a {
+          border-bottom: 1px solid rgb(0, 0, 0);
+        }
+      }
+    }
+  }
+
+  &.page-planes{
+   > header {
+      .navbar {
+        li.planes > a {
+          border-bottom: 1px solid rgb(0, 0, 0);
+        }
+      }
+    }
+  }
+}
+.navbar{
+  border: none;
+}

@@ -1,0 +1,20 @@
+.social-buttons {
+  margin-right: 30px;
+  position: absolute;
+  //top: 30px;
+  bottom: 0;
+  //width: 250px;
+  right: 0;
+  a {
+    background-color: #EBEBEB;
+    color: #8F8F8F;
+    display: inline-block;
+    float: left;
+    font-family: 'Mono Social Icons Font';
+    font-size: 36px;
+    line-height: 40px;
+    margin: 0 1px;
+    text-align: center;
+    width: 40px;
+  }
+}

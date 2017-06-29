@@ -1,0 +1,104 @@
+@import "bootstrap/variables";
+//@import "bootstrap";
+//$icon-font-path: "/fonts/bootstrap/";
+//$grid-columns: 16;
+@import "variables";
+@import "mixins";
+@import "GothamPro";
+@import "MonoSocialIconsFont";
+/* Roboto загружен через link в view/layouts/main */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  &.page-admin-signup,
+  &.page-admin-login,
+  &.page-request-password-reset,
+  &.page-text-manage,
+  &.page-text-create,
+  &.page-text-update,
+  &.page-news-manage,
+  &.page-news-create,
+  &.page-news-update,
+  &.page-plane-manage,
+  &.page-plane-create,
+  &.page-plane-update {
+    padding-top: 85px;
+  }
+
+  &.page-text-create,
+  &.page-text-update,
+  &.page-news-create,
+  &.page-news-update,
+  &.page-plane-create,
+  &.page-plane-update {
+    > .container-fluid {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+label,
+input {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -moz-font-feature-settings: 'liga' on;
+  text-rendering: auto;
+}
+
+p {
+  line-height: 150%;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.counter {
+  position: relative;
+  top: -15px;
+  padding: 0;
+}
+
+//.form-control {
+//  &::-webkit-input-placeholder,
+//  &::-moz-placeholder,
+//  &:-moz-placeholder,
+//  &:-ms-input-placeholder,
+//  &:input-placeholder {
+//	color: $rbth-color-gray;
+//  }
+//}
+@import "header-active-llinks";
+@import "layout";
+
+@import "page-common";
+
+@import "page-about";
+@import "page-home";
+@import "page-contacts";
+
+@import "page-text";
+@import "page-news";
+@import "page-planes";
+@import "page-planes-test";
+@import "page-error";
+
+@import "grid-view";
+
+@import "admin";
+
+@import "send-message-form";
+@import "social-buttons";
+@import "slick";

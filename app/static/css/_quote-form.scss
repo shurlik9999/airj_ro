@@ -1,0 +1,54 @@
+  #form_section > form{
+    >div{
+      padding-top: 20px;
+      .color-line{
+        margin-bottom: 0;
+      }
+      //width: 35%;
+      input,.submit_container{
+        height: 55px;
+        background-color: rgba(255,255,255, 0.7);
+        font-size: 11px;
+        font-family: Gotham Pro, sans-serif;
+        //width: 100%;
+        margin-bottom: 2px;
+        border: none;
+        border-radius: inherit;
+      }
+      .submit_container{
+        margin-top: 1px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        button{
+          margin: auto;
+          width: 120px;
+          height: 27px;
+          background-color: #ffd974;
+          border: none;
+          font-size: 11px;
+          position: relative;
+          top: 50%;
+          transform: translateY(-50%);
+          border-radius: inherit;
+        }
+      }
+      &.left_block{
+        padding-right: 5%;
+
+      }
+      &.right_block{
+        padding-left: 5%;
+
+      }
+    }
+    min-height: 250px;
+    background: url(../images/bg-contacts-form-pattern.png);
+    @media (max-width: $screen-md) {
+      padding-bottom: 30px;
+      >div{
+        padding-top: 10px;
+        float: none;
+      }
+    }
+  }

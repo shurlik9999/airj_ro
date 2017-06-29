@@ -1,0 +1,123 @@
+.carousel {
+  .carousel-inner {
+    .item {
+      p {
+        margin-right: 7%;
+        margin-left: 7%;
+      }
+    }
+  }
+  .carousel-controls-and-indicators {
+    position: absolute;
+    margin-left: 50%;
+    > .carousel-control {
+      position: static;
+      float: left;
+      width: 6px;
+      height: 10px;
+      color: transparent;
+      text-shadow: none;
+    }
+    > .carousel-control-left {
+      margin-right: 4px;
+      background: url("../images/carousel/bg-carousel-control-left.png") no-repeat;
+      @include image-2x("../images/carousel/bg-carousel-control-left@2x.png", 6px, 10px);
+      &:hover {
+        background: url("../images/carousel/bg-carousel-control-left-hover.png") no-repeat;
+        @include image-2x("../images/carousel/bg-carousel-control-left-hover@2x.png", 6px, 10px);
+      }
+    }
+    > .carousel-control-right {
+      margin-left: 4px;
+      background: url("../images/carousel/bg-carousel-control-right.png") no-repeat;
+      @include image-2x("../images/carousel/bg-carousel-control-right@2x.png", 6px, 10px);
+      &:hover {
+        background: url("../images/carousel/bg-carousel-control-right-hover.png") no-repeat;
+        @include image-2x("../images/carousel/bg-carousel-control-right-hover@2x.png", 6px, 10px);
+      }
+    }
+    > .carousel-indicators {
+      position: static;
+      float: left;
+      margin: 0;
+      > li {
+        float: left;
+        margin: 0;
+        width: 16px;
+        border: none;
+        background: none;
+        .carousel-indicator {
+          float: left;
+          margin: 0 3px;
+          width: 10px;
+          height: 10px;
+          background: url("../images/carousel/bg-carousel-indicator-inactive.png") no-repeat;
+          @include image-2x("../images/carousel/bg-carousel-indicator-inactive@2x.png", 10px, 10px);
+        }
+        .carousel-indicator-dash {
+          display: none;
+          float: left;
+          margin-right: 3px;
+          margin-left: 3px;
+        }
+        &.active {
+          width: 32px;
+          .carousel-indicator {
+            background: url("../images/carousel/bg-carousel-indicator-active.png") no-repeat;
+            @include image-2x("../images/carousel/bg-carousel-indicator-active@2x.png", 10px, 10px);
+          }
+          .carousel-indicator-dash {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: url("../images/carousel/bg-carousel-indicator-dash.png") no-repeat;
+            @include image-2x("../images/carousel/bg-carousel-indicator-dash@2x.png", 10px, 10px);
+          }
+        }
+      }
+    }
+  }
+}
+
+.left.carousel-control,
+.right.carousel-control {
+  background: none;
+  filter: none;
+  opacity: 1;
+  width: 90px;
+  z-index: 10;
+  &:hover {
+    opacity: 1;
+  }
+  span {
+    //color: #b9b9b9;
+    color:#858585;
+    text-shadow: none;
+  }
+  .glyphicon-chevron-left,
+  .glyphicon-chevron-right {
+    background-color: rgba(244, 244, 244, 0.4);
+    //border: 1px solid rgba(200, 200, 200, 0.4);
+    &:hover {
+      background-color: rgba(244, 244, 244, 0.5);
+      //border: 1px solid rgba(200, 200, 200, 0.5);
+    }
+    &:active {
+      background-color: rgba(244, 244, 244, 0.4);
+      //border: 1px solid rgba(200, 200, 200, 0.4);
+    }
+    &:before {
+      position: relative;
+      //top: -1px;
+      top: -5px;
+      font-size: 20px;
+      line-height: 30px;
+    }
+  }
+  .glyphicon-chevron-left:before {
+    content: "\e257";
+  }
+  .glyphicon-chevron-right:before {
+    content: "\e258";
+  }
+}

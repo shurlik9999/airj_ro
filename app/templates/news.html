@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load path_helper %}
+{% load mathfilters %}
+{% load humanize %}
+
+{% block title %}
+   <title>AirJets - заказ самолета на лучших условиях. | Новости </title>
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="">
+{#   TODO: For retina adjust images #}
+    {% for item in news %}
+       {% if item.visible == 1 %}
+           {% if item.template_id == 1 %}
+               <style>
+                #section-{{ forloop.counter }} .image {
+                    background-image: url({{ item.image }});
+                    }
+                    @media
+                    only screen and (-webkit-min-device-pixel-ratio: 2),
+                    only screen and (   min--moz-device-pixel-ratio: 2),
+                    only screen and (     -o-min-device-pixel-ratio: 2/1),
+                    only screen and (        min-device-pixel-ratio: 2),
+                    only screen and (                min-resolution: 192dpi),
+                    only screen and (                min-resolution: 2dppx) {
+                        #section-{{ forloop.counter }} .image {
+                        background-image: url({{ item.image.url }});
+                        }
+                    }
+               </style>
+
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}
+
+{% block content %}
+   {% for item in news reversed %}
+       {% if item.visible == 1 %}
+           {% if item.template_id == 1 %}
+               <section id="section-{{ forloop.counter }}" class="news-template news-template-1 col-md-12 clearfix">
+                    <div class="image col-md-12" style="background-image: url({{ item.image.url }});"></div>
+                    <div class="text-block text-block-white news-header col-md-10 col-md-offset-1 clearfix">
+                        <div>
+                            <span class="news-date">
+{#                                <?= Yii::$app->formatter->asDate($item['datetime'], 'd MMMM Y') ?>#}
+                                {{ item.datetime|date:"d E Y"|date_format_rem_0  }}
+                            </span>
+                            {{ item.title|safe }}
+                            <hr class="color-line">
+                        </div>
+                       {{ item.content|safe }}
+                    </div>
+               </section>
+
+
+           {% elif item.template_id == 2 %}
+            <section id="section-{{ forloop.counter }}" class="news-template news-template-2 col-md-12 clearfix">
+                    <div class="image col-md-6 hidden-xs" style="background-image: url({{ item.image.url }});"></div>
+                    <div class="text-block text-block-white col-md-6 clearfix">
+                        <span class="news-date">{{ item.datetime|date:"d E Y"|date_format_rem_0  }}</span>
+                            {{ item.title|safe }}
+                        <hr class="color-line">
+                        {{ item.content|safe }}
+                    </div>
+                </section>
+
+           {% elif item.template_id == 3 %}
+               <section id="section-{{ forloop.counter }}" class="news-template news-template-3 col-md-12 clearfix">
+                    <div class="text-block text-block-white col-md-6 clearfix">
+                        <span class="news-date">{{ item.datetime|date:"d E Y"|date_format_rem_0  }}</span>
+                        {{ item.title|safe }}
+                        <hr class="color-line">
+                        {{ item.content|safe }}
+                    </div>
+                    <div class="image col-md-6 hidden-xs" style="background-image: url({{ item.image.url }});"></div>
+                </section>
+
+           {% endif %}
+
+        {% endif %}
+    {% endfor %}
+    <hr class="color-line">
+{% endblock %}

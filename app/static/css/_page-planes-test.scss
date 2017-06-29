@@ -1,0 +1,85 @@
+.page-planes-test {
+  .container-fluid,
+  .row {
+    height: auto;
+  }
+  section {
+    padding-right: 0;
+    padding-left: 0;
+    .image {
+      padding-right: 0;
+      padding-left: 0;
+      height: 50%;
+      min-height: 430px;
+      @import "carousel";
+      img {
+        height: auto;
+        width: 100%;
+      }
+      .carousel-controls-and-indicators {
+        margin-top: 20px;
+        position: relative;
+      }
+    }
+    .text-block {
+      margin-bottom: 100px;
+      h1:first-child,
+      h2:first-child {
+        letter-spacing: -0.05em;
+        margin-top: 0;
+      }
+      .flights-title {
+        text-transform: uppercase;
+        color: $default-gray;
+      }
+      p {
+        text-align: justify;
+        &.plane-info-subtitle {
+          margin-top: 10px;
+          text-align: center;
+          text-transform: uppercase;
+        }
+      }
+      //.col-xs-12 {
+      //  padding-left: 0;
+      //  .col-md-6 {
+      //    margin-top: 20px;
+      //  }
+      //}
+    }
+    > hr.color-line {
+      margin: 0;
+    }
+  }
+
+  #section-1 {
+    margin-top: 91px;
+  }
+
+  //.planes-wrapper {
+  //margin-top: 91px;
+  //section {
+  //margin-bottom: 100px;
+  //&:last-of-type {
+  //  margin-bottom: 0;
+  //}
+  //padding-bottom: 30px;
+  //}
+  //}
+
+  #navbar-planes {
+    bottom: 66px;
+    //margin-bottom: 0;
+    .dropdown-toggle {
+      font-family: "GothamProRegular", sans-serif;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+    .navbar-nav > li > .dropdown-menu {
+      border-radius: 0;
+      box-shadow: none;
+      border-color: #e7e7e7;
+      margin-left: 15px;
+    }
+  }
+}

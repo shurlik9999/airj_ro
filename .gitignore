@@ -1,0 +1,13 @@
+*.pyc
+__pycache__
+venv
+.idea
+db.sqlite3
+app/web
+app/static/css1
+project/settings_local.py
+resize
+app/static/resize
+.DS_
+Store
+/resize/

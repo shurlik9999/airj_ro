@@ -25,7 +25,6 @@ SECRET_KEY = '_ny(fajb&jk9z(%uf#%y+z=5f9lnm4^15&vh%_7+%!q0*=z#3i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ADMINS = [('Alex','shurlik99999@mail.ru')]
 
 ALLOWED_HOSTS = ['*']
 
@@ -87,32 +86,8 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-    #     'NAME': 'airjets',                        # Or path to database file if using sqlite3.
-    #     'USER': 'airjets',                        # Not used with sqlite3.
-    #     'PASSWORD': 'zzxc$zzxc',                    # Not used with sqlite3.
-    #     # 'HOST': '213.136.74.75',                    # Set to empty string for localhost. Not used with sqlite3.
-    #     'PORT': '',                                 # Set to empty string for default. Not used with sqlite3.
-    # }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'airjets_yii',
-    #     'USER': 'root',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    #     'OPTIONS': {
-    #         'autocommit': True,
-    #     }
-    # }
-    'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'shurlik9999$airjets_yii',
-            'USER': 'shurlik9999',
-            'PASSWORD': '28zzxc$zzxc28',
-            'HOST':'shurlik9999.mysql.pythonanywhere-services.com',
-        }
+
+
  #    inspectdb
  # make migrations  migrate dumpdata ,
 }

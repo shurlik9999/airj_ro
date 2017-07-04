@@ -9,9 +9,9 @@ urlpatterns = [
     # Examples:
     url(r'^$', views.index, name='home'),
     url(r'^about/$', views.about, name='about'),
-    url(r'^contacts/$', views.contacts, name='contacts'),
+    # url(r'^contacts/$', views.contacts, name='contacts'),
     url(r'^planes/$', views.planes, name='planes'),
-    url(r'^news/$',views.news, name='news'),
+    # url(r'^news/$',views.news, name='news'),
     url(r'^send_message/$', views.send_message, name='send_mail'),
     url(r'^sitemap/$',views.generate_sitemap,name='sitemap'),
 

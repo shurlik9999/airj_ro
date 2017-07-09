@@ -24,7 +24,7 @@
 }
 
 .page-contacts {
-  //#section-1,
+  #section-1,
   #section-2,
   #section-3 {
     height: 50%;
@@ -52,6 +52,12 @@
         height: 50%;
       }
     }
+
+    #section-1 {
+       @media (max-width: $screen-xs) {
+         min-height: 600px;
+      }
+   }
 
     //@media (max-width: $screen-md) {
     //  min-height: 860px;

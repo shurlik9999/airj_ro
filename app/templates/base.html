@@ -78,7 +78,7 @@
                 <a href="#section-1" class="last-section-up-link center-block scrollto"></a>
                 <span class="last-section-up-text">Sus</span>
                 <img src="{% static 'images/bg-menu-logo.svg' %}" alt="" class="last-section-logo center-block">
-                <span class="last-section-copyright">&copy; 2008- {% now "Y" %} AIRJETS. Toate drepturile rezervate.</span>
+                <span class="last-section-copyright">&copy; 2008- {% now "Y" %} AIRJETS. Toate drepturile sunt rezervate.</span>
             </section>
             <section id="mobile-footer-drawer" class="visible-xs"></section>
         </div>
@@ -91,25 +91,25 @@
                 <a class="floating_send_messages visible-xs visible-sm hidden-md">
                     <span class="symbol">imessage</span>
                 </a>
-                <a id="toggle-send-message-form-button" class="hidden-xs hidden-sm" href="#">Отправьте нам сообщение</a>
+                <a id="toggle-send-message-form-button" class="hidden-xs hidden-sm" href="#">Tremiteți un mesaj</a>
                 <div id="message-pjax" data-pjax-container="" data-pjax-push-state="" data-pjax-timeout="1000">
                     <form id="short_form" action="/send_message/" method="post">
                         {% csrf_token %}
                         <div class="form_descripirion">
-                            Consultantii nostri nu sunt disponibile chiar acum.
-                            Vă rugăm să lăsați un mesaj și vom ajunge înapoi la tine.
+                            Consultanții noștri nu sunt disponibili pentru moment.
+                            Vă rugăm să lăsați un mesaj și în scurt timp vom reveni la dumneavoastră.
                         </div>
 {#                        <input type="hidden" name="_csrf" value="NHdKem1JVEVYOigfGRgxdw0bJCVbLw0tfQUfNj0DBDMETwwTAxsefQ==">#}
 
                         <div class="form-group field-messageform-message">
-                            <textarea id="messageform-message" class="form-control" name="message" placeholder="Ваше сообщение"></textarea>
+                            <textarea id="messageform-message" class="form-control" name="message" placeholder="Messajul"></textarea>
 {#                            <p class="help-block help-block-error"></p>#}
                         </div>
                         <div class="form-group field-messageform-email">
-                            <input type="text" id="messageform-email" class="form-control" name="contacts" placeholder="Ваш email или телефон">
+                            <input type="text" id="messageform-email" class="form-control" name="contacts" placeholder="E-mail sau telefon">
 {#                            <p class="help-block help-block-error"></p>#}
                         </div>
-                        <button type="submit" id="send-message-button" class="btn btn-default" name="send-message-button">ОТПРАВИТЬ</button>
+                        <button type="submit" id="send-message-button" class="btn btn-default" name="send-message-button">Tremite</button>
                     </form>
                 </div>
             </div>

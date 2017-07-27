@@ -66,7 +66,7 @@ jQuery(function () {
 			success: function (data) {
 				console.log(data);
 				if (data.status == 'OK'){
-					generateNotification('success','Ваше сообщение успешно отправлено.');
+					generateNotification('success','Mesajul a fost trimis cu succes.');
 					if(form.attr('id') =='short_form'){
 						$('#toggle-send-message-form-button').trigger('click');
 					}

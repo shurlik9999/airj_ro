@@ -105,9 +105,17 @@ class ImagesAdmin(admin.ModelAdmin):
     )
     list_display = fields_
 
+class PlaneCategoryAdmin(admin.ModelAdmin):
+    fields_ = (
+        'id',
+        'description'
+    )
+    list_display = fields_
+
 admin.site.register(HomepageBlock, HomePageBlockAdmin)
 admin.site.register(Text, TextAdmin)
 admin.site.register(RequestMessages, RequestMessagesAdmin)
 admin.site.register(News, NewsAdmin)
 admin.site.register(Plane, PlaneAdmin)
 admin.site.register(Images, ImagesAdmin)
+admin.site.register(PlaneCategory, PlaneCategoryAdmin)

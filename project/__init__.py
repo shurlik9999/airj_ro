@@ -1,1 +1,1 @@
-__project_version__= '1.1.4'
+__project_version__= '1.1.5'

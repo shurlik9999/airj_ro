@@ -132,7 +132,7 @@ def planes(request):
         'flights',
         'image_interior',
         'image_exterior',
-        'category__description']) for p in models.Plane.objects.all()]
+        'category']) for p in models.Plane.objects.all()]
 
 
 
@@ -258,7 +258,7 @@ def send_message(request):
             #sender = 'alexandr.taracanov@gmail.com'
             receivers = ['zakazchartera@mail.ru']
             try:
-                send_mail('Сообщение с сайта AirJets', message, sender,
+                send_mail('Сообщение с сайта AirJets.ro', message, sender,
                           receivers, fail_silently=False)
                 print("Successfully sent email")
             except Exception as e:

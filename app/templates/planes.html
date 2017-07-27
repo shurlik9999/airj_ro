@@ -110,32 +110,22 @@
                 <div class="col-md-6">
                     <h2>{{plane.title|safe}}</h2>
                     <p class="plane-info-subtitle">
-                        Категория:
-                        {% if plane.category__description %}
-                            {{ plane.category__description }}<br>
+                        Categoria:
+                        {% if plane.category %}
+                            {{ plane.category }}<br>
                         {% endif %}
-                        Пассажиров:
+                        Pasageri:
                         {% if plane.passengers %}
                             {{ plane.passengers }}<br>
                         {% endif %}
-                        Дальность:
+                        Distanta:
                         {% if plane.range %}
                             {{ plane.range|number_format }} км<br>
                         {% endif %}
-{#                        <?php#}
-{#                        /**#}
-{#                         * @var $category Category#}
-{#                         */#}
-{#                        $category = $plane->getCategory()->one() ?>#}
-{#                        <?= $category ?#}
-{#                            ' . $category->description . '' : '' ?>#}
-{#                        <?= $plane->passengers ?#}
-{#                            'Пассажиров: ' . strip_tags($plane->passengers) . '<br>' : '' ?>#}
-{#                        <?= $plane->range ?#}
-{#                            'Дальность: ' . number_format($plane->range, 0, '.', ' ') . ' км<br>' : '' ?>#}
+
                     </p>
                     <hr class="color-line">
-                    <span class="flights-title">Недавние рейсы</span>
+                    <span class="flights-title">Zboruri recente</span>
                     {{ plane.flights|safe }}
                 </div>
                 <div class="col-md-6">

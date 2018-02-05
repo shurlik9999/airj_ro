@@ -1,33 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>http://airjets.ru/</loc>
-      <lastmod>2017-04-01</lastmod>
+      <loc>http://airjets.ro/</loc>
+      <lastmod>2018-02-05</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
     <url>
-      <loc>http://airjets.ru/about/</loc>
-      <lastmod>2017-04-01</lastmod>
+      <loc>http://airjets.ro/about/</loc>
+      <lastmod>2018-02-05</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
    </url>
     <url>
-      <loc>http://airjets.ru/contacts/</loc>
-      <lastmod>2017-04-01</lastmod>
+      <loc>http://airjets.ro/planes/</loc>
+      <lastmod>2018-02-05</lastmod>
       <changefreq>monthly</changefreq>
-      <priority>0.6</priority>
-   </url>
-    <url>
-      <loc>http://airjets.ru/planes/</loc>
-      <lastmod>2017-04-01</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.8</priority>
-   </url>
-    <url>
-      <loc>http://airjets.ru/news/</loc>
-      <lastmod>2017-04-01</lastmod>
-      <changefreq>weekly</changefreq>
       <priority>0.8</priority>
    </url>
 </urlset>

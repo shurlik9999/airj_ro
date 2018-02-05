@@ -2,6 +2,6 @@ User-agent: *
 Disallow: /admin/
 Allow: /
 
-Sitemap: https://airjets.ru/sitemap.xml
+Sitemap: https://airjets.ro/sitemap.xml
 
-Host: https://airjets.ru
+Host: https://airjets.ro

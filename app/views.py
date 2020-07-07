@@ -1,4 +1,5 @@
 import os
+import requests
 from django.shortcuts import render
 from django.http import JsonResponse,HttpResponse
 from django.http import HttpResponseNotFound
@@ -64,6 +65,7 @@ def index(request):
                             'section_3': carousel_section_3,
                             'section_4': carousel_section_4,
                         },
+                      'captcha_key': settings.RECAPTCHA_FRONT_KEY
                   }
                   )
 def about(request):
@@ -85,6 +87,7 @@ def about(request):
                       'keywords': keywords,
                       'content_blocks':content_blocks,
                       'page_class': 'page-about',
+                      'captcha_key': settings.RECAPTCHA_FRONT_KEY
                   }
                   )
 
@@ -108,6 +111,7 @@ def contacts(request):
                       'keywords': keywords,
                       'content_blocks':content_blocks,
                       'page_class': 'page-contacts',
+                      'captcha_key': settings.RECAPTCHA_FRONT_KEY
                   }
                   )
 
@@ -178,6 +182,7 @@ def planes(request):
                       'keywords': keywords,
                       'description' : description,
                       'page_class': 'page-planes',
+                      'captcha_key': settings.RECAPTCHA_FRONT_KEY
                   }
                   )
 
@@ -201,6 +206,7 @@ def news(request):
                       'description': description,
                       'keywords': keywords,
                       'page_class': 'page-news',
+                      'captcha_key': settings.RECAPTCHA_FRONT_KEY
                   }
                   )
 
@@ -226,7 +232,19 @@ def generate_sitemap(request):
                                 "sitemap.xml")
     return HttpResponse(open(sitemap_path).read(), content_type='text/xml')
 
+def recaptcha_submit(recaptcha_secret, recaptcha_response, remoteip=''):
 
+    secret_key = recaptcha_secret
+
+    # captcha verification
+    data = {
+        'response': recaptcha_response,
+        'secret': secret_key
+    }
+    resp = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+    result_json = resp.json()
+
+    return result_json
 
 def send_message(request):
     from app.forms import MessageForm
@@ -235,12 +253,23 @@ def send_message(request):
 
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
+        captcha_score = ""
+        if request.POST['g-recaptcha_response']:
+            g_recaptcha_token = request.POST['g-recaptcha_response']
+            captcha_resp = recaptcha_submit(settings.RECAPTCHA_SECRET_KEY, g_recaptcha_token)
+            if not captcha_resp['success'] and captcha_resp['score'] < 0.1:
+                return JsonResponse({'status': 'error', 'errors': "You did not pass captcha validation, try next time"})
+            captcha_score = str(captcha_resp['score'])
+        else:
+            return JsonResponse({'status': 'error', 'errors': "You did not pass captcha validation, try next time"})
+
         form = MessageForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             post = form.save(commit=False)
             post.created_date = timezone.now()
+            post.message = post.message + " captcha_score: " + captcha_score
             post.save()
             message = 'Oт: {0} \n' \
                       'Сообщение: {1} {2} {3} {4}'.format(
@@ -255,7 +284,6 @@ def send_message(request):
             # from_email = request.POST.get('from_email', '')
 
             sender = 'zakazchartera@mail.ru'
-            #sender = 'alexandr.taracanov@gmail.com'
             receivers = ['zakazchartera@mail.ru']
             try:
                 send_mail('Сообщение с сайта AirJets.ro', message, sender,

@@ -59,40 +59,50 @@ jQuery(function () {
 	
 	$('form').on('submit',function () {
 		var form = $(this);
-		$.ajax({
-			type:"POST",
-			url:'/send_message/',
-			data:$(this).serialize(),
-			success: function (data) {
-				console.log(data);
-				if (data.status == 'OK'){
-					generateNotification('success','Mesajul a fost trimis cu succes.');
-					if(form.attr('id') =='short_form'){
-						$('#toggle-send-message-form-button').trigger('click');
-					}
-				}else{
-					if (typeof data.errors == 'object'){
-						for (var k in data.errors){
-							for(var i = 0; i < data.errors[k].length; i++){
-								generateNotification('error', capitalizeFirstLetter(k) +' ' + data.errors[k][i]);
+
+		grecaptcha.ready(function () {
+
+			grecaptcha.execute(captcha_key, {action: 'submit'}).then(function (token) {
+				// Add your logic to submit to your backend server here.
+				form.find(".g-recaptcha_response").val(token);
+
+				$.ajax({
+					type:"POST",
+					url:'/send_message/',
+					data: form.serialize(),
+					success: function (data) {
+						console.log(data);
+						if (data.status == 'OK'){
+							generateNotification('success','Mesajul a fost trimis cu succes.');
+							if(form.attr('id') =='short_form'){
+								$('#toggle-send-message-form-button').trigger('click');
+							}
+						}else{
+							if (typeof data.errors == 'object'){
+								for (var k in data.errors){
+									for(var i = 0; i < data.errors[k].length; i++){
+										generateNotification('error', capitalizeFirstLetter(k) +' ' + data.errors[k][i]);
+									}
+
+								}
+							}
+							else{
+								generateNotification('error', data.errors);
+
 							}
 
 						}
-					}
-					else{
-						generateNotification('error', data.errors);
+
+					},
+
+					error:function (xhr, status,error) {
+						generateNotification('error', xhr+''+status+error);
 
 					}
-
-				}
-
-            },
-
-			error:function (xhr, status,error) {
-				generateNotification('error', xhr+''+status+error);
-
-            }
+				});
+			});
 		});
+
 		return false;
     });
 

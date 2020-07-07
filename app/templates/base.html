@@ -109,6 +109,10 @@
                             <input type="text" id="messageform-email" class="form-control" name="contacts" placeholder="E-mail sau telefon">
 {#                            <p class="help-block help-block-error"></p>#}
                         </div>
+                        <div>
+                            <input class="g-recaptcha_response" name="g-recaptcha_response" type="text" hidden>
+                        </div>
+
                         <button type="submit" id="send-message-button" class="btn btn-default" name="send-message-button">Tremite</button>
                     </form>
                 </div>
@@ -124,6 +128,8 @@
         </nav>
     </footer>
 
+        <script src="https://www.google.com/recaptcha/api.js?render={{ captcha_key }}"></script>
+
         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
         <script src="{%static 'vendor/noty/packaged/jquery.noty.packaged.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -135,6 +141,7 @@
         {% block scripts %}{% endblock %}
 
         <script>
+            var captcha_key = '{{ captcha_key }}';
             var contentHeight = 0;
             var footerHeight = 70;
             jQuery('section, section + hr').not('#mobile-footer-drawer').each(function () {

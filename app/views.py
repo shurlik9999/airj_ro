@@ -257,9 +257,10 @@ def send_message(request):
         if request.POST['g-recaptcha_response']:
             g_recaptcha_token = request.POST['g-recaptcha_response']
             captcha_resp = recaptcha_submit(settings.RECAPTCHA_SECRET_KEY, g_recaptcha_token)
-            if not captcha_resp['success'] and captcha_resp['score'] < 0.1:
+            if captcha_resp['success'] and captcha_resp['score'] > 0.1:
+                captcha_score = str(captcha_resp['score'])
+            else:
                 return JsonResponse({'status': 'error', 'errors': "You did not pass captcha validation, try next time"})
-            captcha_score = str(captcha_resp['score'])
         else:
             return JsonResponse({'status': 'error', 'errors': "You did not pass captcha validation, try next time"})
 

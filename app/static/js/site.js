@@ -72,6 +72,7 @@ jQuery(function () {
 					data: form.serialize(),
 					success: function (data) {
 						console.log(data);
+						form.find(".g-recaptcha_response").val("");
 						if (data.status == 'OK'){
 							generateNotification('success','Mesajul a fost trimis cu succes.');
 							if(form.attr('id') =='short_form'){
@@ -96,6 +97,7 @@ jQuery(function () {
 					},
 
 					error:function (xhr, status,error) {
+						form.find(".g-recaptcha_response").val("");
 						generateNotification('error', xhr+''+status+error);
 
 					}

@@ -1,6 +1,6 @@
 certifi==2017.4.17
 chardet==3.0.4
-Django==1.10.6
+Django==2.2.24
 django-grappelli==2.10.1
 django-mathfilters==0.4.0
 django-smtp-ssl==1.0
